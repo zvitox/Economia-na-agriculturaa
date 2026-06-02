@@ -3,44 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroEcon | Notícia</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Notícias e Análises - AgroEcon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <header>
-        <div class="navbar container">
-            <div class="logo">
-                <i class="fa-solid fa-seedling"></i> <span>Agro<span class="highlight">Econ</span></span>
+    <nav class="bg-green-800 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wider">AGRO<span class="text-green-400">ECON</span></a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-green-300">Dashboard</a>
+                <a href="noticias.html" class="hover:text-green-300 font-semibold border-b-2 border-green-400">Notícias</a>
+                <a href="analises.html" class="hover:text-green-300">Gráficos & Dados</a>
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="analises.html">Análises & Gráficos</a></li>
-                </ul>
-            </nav>
         </div>
-    </header>
+    </nav>
 
-    <main class="container single-news-container">
-        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar para a Home</a>
-        
-        <article class="full-news">
-            <span id="noticiaCategoria" class="news-tag">Categoria</span>
-            <h1 id="noticiaTitulo">Carregando título...</h1>
-            <img id="noticiaImagem" src="" alt="" class="full-news-img">
-            <div id="noticiaTexto" class="full-news-content">
+    <main class="container mx-auto my-8 px-4 max-w-5xl">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">Notícias e Análises de Mercado</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 flex flex-col justify-between">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-green-700 uppercase tracking-wider">Macroeconomia</span>
+                    <h2 class="text-xl font-bold text-gray-900 mt-2 mb-3">Impacto da Taxa Selic no Financiamento do Agronegócio</h2>
+                    <p class="text-gray-600 text-sm line-clamp-3">A recente flutuação das taxas de juros no Brasil dita o ritmo dos investimentos em maquinário e tecnologia no campo. Especialistas alertam para a necessidade de planejamento rigoroso.</p>
                 </div>
-        </article>
+                <div class="px-6 pb-6">
+                    <a href="noticia-interna.html?id=1" class="inline-block bg-green-700 text-white text-xs font-bold px-4 py-2 rounded hover:bg-green-800 transition">Ler Notícia Completa</a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 flex flex-col justify-between">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">Mercado Externo</span>
+                    <h2 class="text-xl font-bold text-gray-900 mt-2 mb-3">Demanda Chinesa por Grãos Registra Recorde no Primeiro Trimestre</h2>
+                    <p class="text-gray-600 text-sm line-clamp-3">As exportações brasileiras de soja e milho para a Ásia superaram as expectativas de mercado, sustentando os preços internos mesmo diante de recordes de safra.</p>
+                </div>
+                <div class="px-6 pb-6">
+                    <a href="noticia-interna.html?id=2" class="inline-block bg-green-700 text-white text-xs font-bold px-4 py-2 rounded hover:bg-green-800 transition">Ler Notícia Completa</a>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 AgroEcon Analytics.</p>
-        </div>
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-24">
+        <p>© 2026 AgroEcon. Todos os direitos reservados.</p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
