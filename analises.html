@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroEcon | Análises Avançadas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="navbar container">
+            <div class="logo">
+                <i class="fa-solid fa-seedling"></i> <span>Agro<span class="highlight">Econ</span></span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="analises.html" class="active">Análises & Gráficos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="analytics-section">
+            <h2><i class="fa-solid fa-chart-pie"></i> Painel Analítico de Tendências</h2>
+            <p class="section-desc">Acompanhe os gráficos de evolução de preços de commodities e a distribuição dos destinos de exportações do agronegócio atualizados em tempo real.</p>
+            
+            <div class="charts-container full-width-charts">
+                <div class="chart-box">
+                    <h3>Evolução do Preço das Commodities (USD/t)</h3>
+                    <canvas id="commoditiesChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Distribuição das Exportações por Destino</h3>
+                    <canvas id="exportDestinationsChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 AgroEcon Analytics.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
