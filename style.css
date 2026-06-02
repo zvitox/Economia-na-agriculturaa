@@ -1,280 +1,107 @@
-/* Configurações Globais e Resets */
-:root {
-    --primary-color: #2c5e3b;
-    --primary-light: #a9dfbf;
-    --accent-color: #e67e22;
-    --dark-color: #2c3e50;
-    --light-bg: #f8f9fa;
-    --white: #ffffff;
-    --text-color: #444;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    --border-radius: 12px;
-    --transition: all 0.3s ease;
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    // --- BANCO DE DADOS DE NOTÍCIAS (Com texto completo) ---
+    const noticias = [
+        {
+            titulo: "Crédito Rural bate recorde histórico no primeiro semestre",
+            resumo: "Novas linhas de financiamento verde e incentivos governamentais impulsionaram a adoção de tecnologias sustentáveis em pequenas e médias propriedades.",
+            textoCompleto: "<p>O setor agropecuário brasileiro registrou um marco histórico no primeiro semestre deste ano com a liberação recorde de recursos voltados ao Crédito Rural. O volume financeiro movimentado superou as expectativas do mercado, impulsionado majoritariamente pela forte adesão às linhas de financiamento sustentável (conhecidas como fundos verdes).</p><p>Pequenos e médios produtores foram os maiores beneficiados, utilizando o capital para a modernização de maquinários, implementação de sistemas de irrigação inteligente e transição para práticas de agricultura regenerativa de baixo carbono. Analistas econômicos apontam que este cenário robustece a economia interna, garantindo segurança alimentar e maior competitividade internacional para os próximos trimestres.</p>",
+            imagem: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=800&q=80",
+            categoria: "Finanças"
+        },
+        {
+            titulo: "Demanda asiática por milho brasileiro cresce 15% em 2026",
+            resumo: "Gargalos logísticos superados nos portos do Arco Norte aceleraram o fluxo de escoamento da safra recorde do Centro-Oeste brasileiro.",
+            textoCompleto: "<p>As exportações de milho do Brasil para o continente asiático registraram uma expansão expressiva de 15% no acumulado deste ano. A alta na demanda foi amplamente atendida devido à eficiência operacional conquistada nos complexos portuários localizados no Arco Norte do país.</p><p>A otimização logística reduziu drasticamente o tempo de escoamento das safras vindas do Centro-Oeste, reduzindo os custos de frete e tornando o produto brasileiro altamente atrativo em comparação com concorrentes norte-americanos. A expectativa é que esse ritmo comercial se mantenha firme, abrindo novos mercados também para subprodutos, como o farelo de milho voltado à nutrição animal.</p>",
+            imagem: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80",
+            categoria: "Mercado Externo"
+        },
+        {
+            titulo: "Como a Inteligência Artificial e a IoT barateiam a produção",
+            resumo: "Sensores de solo de baixo custo e análises preditivas climáticas via satélite ajudam produtores a economizar até 30% em defensivos agrícolas.",
+            textoCompleto: "<p>A revolução tecnológica no campo deixou de ser exclusividade de megacorporações. A integração de sensores de Internet das Coisas (IoT) aplicados ao solo, conectados a algoritmos de Inteligência Artificial, está democratizando a economia de insumos em propriedades de diversos tamanhos.</p><p>Com dados precisos capturados em tempo real e cruzados com relatórios meteorológicos de satélite, o produtor sabe o momento e o local exato que necessitam de intervenção. O resultado direto reflete no bolso: houve uma redução média observada de 30% nos custos de aplicação de defensivos agrícolas e fertilizantes, gerando ganhos de margem financeira expressivos e mitigando impactos ambientais no ecossistema local.</p>",
+            imagem: "https://images.unsplash.com/photo-1625246333195-78d9c38ad451?auto=format&fit=crop&w=800&q=80",
+            categoria: "Tecnologia"
+        }
+    ];
 
-body {
-    background-color: var(--light-bg);
-    color: var(--text-color);
-    line-height: 1.6;
-}
+    // --- CARREGAR VITRINE DE NOTÍCIAS (Se estiver na Index) ---
+    const newsContainer = document.getElementById('newsContainer');
+    if (newsContainer) {
+        noticias.forEach((item, index) => {
+            const cardHtml = `
+                <article class="news-card">
+                    <img src="${item.imagem}" alt="${item.titulo}" class="news-img">
+                    <div class="news-body">
+                        <span class="news-tag">${item.categoria}</span>
+                        <h3>${item.titulo}</h3>
+                        <p>${item.resumo}</p>
+                        <a href="noticia.html?id=${index}" class="news-link">Ler notícia completa <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            `;
+            newsContainer.innerHTML += cardHtml;
+        });
+    }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+    // --- CARREGAR PÁGINA DE NOTÍCIA COMPLETA (Se estiver na noticia.html) ---
+    if (window.location.pathname.includes('noticia.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const noticiaId = urlParams.get('id');
 
-/* Header & Navbar */
-header {
-    background-color: var(--white);
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        if (noticiaId !== null && noticias[noticiaId]) {
+            const dadosNoticia = noticias[noticiaId];
+            document.getElementById('noticiaTitulo').innerText = dadosNoticia.titulo;
+            document.getElementById('noticiaCategoria').innerText = dadosNoticia.categoria;
+            document.getElementById('noticiaImagem').src = dadosNoticia.imagem;
+            document.getElementById('noticiaImagem').alt = dadosNoticia.titulo;
+            document.getElementById('noticiaTexto').innerHTML = dadosNoticia.textoCompleto;
+            document.title = `AgroEcon | ${dadosNoticia.titulo}`;
+        } else {
+            document.getElementById('noticiaTitulo').innerText = "Notícia não encontrada";
+        }
+    }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-}
+    // --- CARREGAR GRÁFICOS (Apenas se os elementos existirem na página atual) ---
+    const ctxCommodities = document.getElementById('commoditiesChart');
+    if (ctxCommodities) {
+        new Chart(ctxCommodities.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Soja',
+                        data: [420, 435, 410, 445, 460, 455],
+                        borderColor: '#2c5e3b',
+                        backgroundColor: 'rgba(44, 94, 59, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Milho',
+                        data: [180, 195, 190, 210, 205, 220],
+                        borderColor: '#e67e22',
+                        backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }
+                ]
+            }
+        });
+    }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--dark-color);
-}
-
-.logo i {
-    color: var(--primary-color);
-}
-
-.highlight {
-    color: var(--primary-color);
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--primary-color);
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, rgba(44, 94, 59, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-    color: var(--white);
-    border-radius: var(--border-radius);
-    padding: 60px 40px;
-    margin: 30px 0;
-    text-align: center;
-}
-
-.hero-text h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.hero-text p {
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0.9;
-}
-
-/* Dashboard Cards */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.card {
-    background-color: var(--white);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: var(--transition);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card-icon {
-    font-size: 35px;
-}
-
-.text-green { color: #27ae60; }
-.text-amber { color: #f39c12; }
-.text-blue { color: #2980b9; }
-
-.card-info h3 {
-    font-size: 14px;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.card-info .number {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--dark-color);
-    margin: 5px 0;
-}
-
-.percentage {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.percentage.positive { color: #27ae60; }
-.percentage.negative { color: #c0392b; }
-
-/* Analytics / Gráficos */
-.analytics-section h2, .news-section h2 {
-    margin-bottom: 20px;
-    color: var(--dark-color);
-}
-
-.charts-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.chart-box {
-    background-color: var(--white);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-}
-
-.chart-box h3 {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: var(--dark-color);
-}
-
-/* Seção de Notícias */
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-bottom: 50px;
-}
-
-.news-card {
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-}
-
-.news-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.news-body {
-    padding: 20px;
-}
-
-.news-tag {
-    background-color: var(--primary-light);
-    color: var(--primary-color);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-}
-
-.news-body h3 {
-    font-size: 18px;
-    margin: 10px 0;
-    color: var(--dark-color);
-}
-
-.news-body p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.news-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-/* Footer */
-footer {
-    background-color: var(--dark-color);
-    color: var(--white);
-    padding: 30px 0;
-    text-align: center;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.social-links a {
-    color: var(--white);
-    font-size: 20px;
-    margin-left: 15px;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    color: var(--primary-light);
-}
-
-/* Responsividade Mobile */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .menu-toggle { display: block; }
-    .charts-container { grid-template-columns: 1fr; }
-    .footer-content { flex-direction: column; }
-}
+    const ctxExports = document.getElementById('exportDestinationsChart');
+    if (ctxExports) {
+        new Chart(ctxExports.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['China', 'União Europeia', 'Estados Unidos', 'Demais Países'],
+                datasets: [{
+                    data: [38, 18, 12, 32],
+                    backgroundColor: ['#1b4332', '#2d6a4f', '#40916c', '#74c69d']
+                }]
+            }
+        });
+    }
+});
