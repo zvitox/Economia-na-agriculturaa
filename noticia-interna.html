@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigo - AgroEcon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <nav class="bg-green-800 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wider">AGRO<span class="text-green-400">ECON</span></a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-green-300">Dashboard</a>
+                <a href="noticias.html" class="hover:text-green-300">Notícias</a>
+                <a href="analises.html" class="hover:text-green-300">Gráficos & Dados</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto my-12 px-4 max-w-3xl bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        <a href="noticias.html" class="text-green-700 font-bold text-sm hover:underline">← Voltar para Notícias</a>
+        
+        <article class="mt-6">
+            <span id="news-category" class="text-xs font-bold text-green-700 uppercase tracking-wider"></span>
+            <h1 id="news-title" class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4 leading-tight">Carregando notícia...</h1>
+            <p id="news-date" class="text-xs text-gray-400 mb-6"></p>
+            
+            <div id="news-content" class="text-gray-700 leading-relaxed space-y-4 text-lg">
+                </div>
+        </article>
+    </main>
+
+    <script>
+        // Banco de dados simulado para o funcionamento offline/GitHub Pages
+        const noticiasDB = {
+            "1": {
+                categoria: "Macroeconomia",
+                titulo: "Impacto da Taxa Selic no Financiamento do Agronegócio",
+                data: "Publicado em: 15 de Maio de 2026",
+                conteudo: `
+                    <p>O cenário macroeconômico brasileiro passa por adaptações cruciais para o produtor rural. A manutenção e variações na Taxa Selic exercem pressão direta sobre as linhas de crédito rural controladas e livres.</p>
+                    <p>Com juros oscilantes, o custo do dinheiro para investimento em bens de capital — como tratores, colheitadeiras e sistemas de irrigação complexos — exige que as cooperativas e produtores individuais calculem milimetricamente a margem de retorno líquida por hectare.</p>
+                    <strong class="block text-gray-900 mt-4">Estratégias de Mitigação:</strong>
+                    <p>Especialistas recomendam a diversificação das fontes de financiamento, recorrendo a ferramentas de mercado de capitais como as Fiagros (Fundos de Investimento nas Cadeias Produtivas Agroindustriais) e a emissão de CPRs (Cédulas de Produto Rural) verdes.</p>
+                `
+            },
+            "2": {
+                categoria: "Mercado Externo",
+                titulo: "Demanda Chinesa por Grãos Registra Recorde no Primeiro Trimestre",
+                data: "Publicado em: 28 de Maio de 2026",
+                conteudo: `
+                    <p>A balança comercial brasileira do agronegócio continua quebrando recordes históricos, impulsionada pelo apetite insaciável do mercado asiático.</p>
+                    <p>A China aumentou a importação de complexo soja e milho brasileiro em patamares substanciais neste início de ano. Esse fenômeno é explicado pela recomposição do rebanho suíno chinês e pela competitividade do preço do grão brasileiro no porto de Paranaguá e Santos.</p>
+                    <strong class="block text-gray-900 mt-4">Projeções Futuras:</strong>
+                    <p>O grande desafio de curto a médio prazo reside na infraestrutura logística de escoamento. O aumento do volume exige ferrovias eficientes e a consolidação do Arco Norte para evitar sobretaxas decorrentes de filas de navios nos portos do Sudeste.</p>
+                `
+            }
+        };
+
+        // Captura o ID vindo da URL (?id=X)
+        const params = new URLSearchParams(window.location.search);
+        const newsId = params.get('id');
+
+        if (newsId && noticiasDB[newsId]) {
+            const noticia = noticiasDB[newsId];
+            document.getElementById('news-category').innerText = noticia.categoria;
+            document.getElementById('news-title').innerText = noticia.titulo;
+            document.getElementById('news-date').innerText = noticia.data;
+            document.getElementById('news-content').innerHTML = noticia.conteudo;
+            document.title = noticia.titulo + " - AgroEcon";
+        } else {
+            document.getElementById('news-title').innerText = "Notícia não encontrada.";
+        }
+    </script>
+</body>
+</html>
