@@ -3,62 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroEcon | Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>AgroEcon - Inteligência em Agronegócio</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 font-sans">
 
-    <header>
-        <div class="navbar container">
-            <div class="logo">
-                <i class="fa-solid fa-seedling"></i> <span>Agro<span class="highlight">Econ</span></span>
+    <nav class="bg-green-800 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wider">AGRO<span class="text-green-400">ECON</span></a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-green-300 font-semibold border-b-2 border-green-400">Dashboard</a>
+                <a href="noticias.html" class="hover:text-green-300">Notícias</a>
+                <a href="analises.html" class="hover:text-green-300">Gráficos & Dados</a>
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="analises.html">Análises & Gráficos</a></li>
-                </ul>
-            </nav>
         </div>
-    </header>
+    </nav>
 
-    <main class="container">
-        <section class="hero-section">
-            <div class="hero-text">
-                <h1>Portal de Economia na Agricultura</h1>
-                <p>Indicadores financeiros, mercado de commodities e análises aprofundadas sobre o agronegócio.</p>
+    <div class="bg-green-900 text-white text-sm py-2 overflow-hidden border-t border-green-700">
+        <div class="container mx-auto flex space-x-8 animate-pulse">
+            <span>🌾 Soja: R$ 138,50 (+1.2%)</span>
+            <span>🌽 Milho: R$ 62,10 (-0.4%)</span>
+            <span>🥩 Boi Gordo: R$ 232,00 (+0.8%)</span>
+            <span>☕ Café: R$ 1.020,00 (+2.1%)</span>
+            <span>💵 Dólar: R$ 5,12 (-0.3%)</span>
+        </div>
+    </div>
+
+    <main class="container mx-auto my-8 px-4">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Painel Econômico do Agronegócio</h1>
+            <p class="text-gray-600">Dados, análises e indicadores do motor da economia brasileira.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase">PIB do Agro (Projeção)</h3>
+                <p class="text-3xl font-bold text-green-700 mt-2">+2.4%</p>
+                <span class="text-xs text-gray-400">Participação estimada em 25% do PIB total</span>
             </div>
-        </section>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase">Balança Comercial (Mês)</h3>
+                <p class="text-3xl font-bold text-blue-700 mt-2">US$ 14.2 Bi</p>
+                <span class="text-xs text-green-600">▲ 8% em relação ao ano anterior</span>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase">Crédito Rural Contratado</h3>
+                <p class="text-3xl font-bold text-orange-700 mt-2">R$ 120.5 Bi</p>
+                <span class="text-xs text-gray-400">Plano Safra vigente</span>
+            </div>
+        </div>
 
-        <section class="dashboard-grid">
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-chart-line text-green"></i></div>
-                <div class="card-info">
-                    <h3>PIB do Agro</h3>
-                    <p class="number">R$ 2.6 T</p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Evolução das Exportações (Principais Commodities)</h2>
+                <div class="relative h-72">
+                    <canvas id="chartHome"></canvas>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-wheat-awn text-amber"></i></div>
-                <div class="card-info">
-                    <h3>Safra de Grãos</h3>
-                    <p class="number">315.4M t</p>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Últimas Análises</h2>
+                <div class="space-y-4">
+                    <div class="border-b pb-3">
+                        <span class="text-xs font-bold text-green-700 uppercase">Mercado</span>
+                        <a href="noticia-interna.html?id=1" class="block font-semibold text-gray-800 hover:text-green-700 transition">Como a variação do dólar impacta os custos de insumos na próxima safra.</a>
+                    </div>
+                    <div class="border-b pb-3">
+                        <span class="text-xs font-bold text-blue-700 uppercase">Logística</span>
+                        <a href="noticia-interna.html?id=2" class="block font-semibold text-gray-800 hover:text-green-700 transition">Gargalos no escoamento dos portos e o preço do frete rodoviário.</a>
+                    </div>
                 </div>
+                <a href="noticias.html" class="block text-center mt-4 text-sm font-bold text-green-700 hover:underline">Ver todas as notícias →</a>
             </div>
-        </section>
-
-        <section class="news-section">
-            <h2><i class="fa-solid fa-newspaper"></i> Últimas Notícias Econômicas</h2>
-            <div class="news-grid" id="newsContainer">
-                </div>
-        </section>
+        </div>
     </main>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 AgroEcon Analytics.</p>
-        </div>
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12 border-t border-gray-700">
+        <p>© 2026 AgroEcon. Desenvolvido para análises acadêmicas e de mercado.</p>
     </footer>
 
     <script src="script.js"></script>
