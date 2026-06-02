@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroEcon | Economia e Agricultura</title>
+    <title>AgroEcon | Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -17,30 +16,27 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#dashboard" class="active">Dashboard</a></li>
-                    <li><a href="#analytics">Análises</a></li>
-                    <li><a href="#news">Notícias</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="analises.html">Análises & Gráficos</a></li>
                 </ul>
             </nav>
-            <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         </div>
     </header>
 
     <main class="container">
         <section class="hero-section">
             <div class="hero-text">
-                <h1>O Impacto Econômico do Agronegócio Global</h1>
-                <p>Análises de mercado, indicadores financeiros, oscilação de commodities e dados estratégicos para a tomada de decisão no campo.</p>
+                <h1>Portal de Economia na Agricultura</h1>
+                <p>Indicadores financeiros, mercado de commodities e análises aprofundadas sobre o agronegócio.</p>
             </div>
         </section>
 
-        <section id="dashboard" class="dashboard-grid">
+        <section class="dashboard-grid">
             <div class="card">
                 <div class="card-icon"><i class="fa-solid fa-chart-line text-green"></i></div>
                 <div class="card-info">
                     <h3>PIB do Agro</h3>
                     <p class="number">R$ 2.6 T</p>
-                    <span class="percentage positive"><i class="fa-solid fa-arrow-up"></i> +2.4% este ano</span>
                 </div>
             </div>
             <div class="card">
@@ -48,34 +44,11 @@
                 <div class="card-info">
                     <h3>Safra de Grãos</h3>
                     <p class="number">315.4M t</p>
-                    <span class="percentage positive"><i class="fa-solid fa-arrow-up"></i> +1.8% vs safra ant.</span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-dollar-sign text-blue"></i></div>
-                <div class="card-info">
-                    <h3>Exportações</h3>
-                    <p class="number">US$ 16.2B</p>
-                    <span class="percentage negative"><i class="fa-solid fa-arrow-down"></i> -0.5% este mês</span>
                 </div>
             </div>
         </section>
 
-        <section id="analytics" class="analytics-section">
-            <h2><i class="fa-solid fa-chart-pie"></i> Gráficos e Tendências de Mercado</h2>
-            <div class="charts-container">
-                <div class="chart-box">
-                    <h3>Evolução do Preço das Commodities (USD/t)</h3>
-                    <canvas id="commoditiesChart"></canvas>
-                </div>
-                <div class="chart-box">
-                    <h3>Distribuição das Exportações por Destino</h3>
-                    <canvas id="exportDestinationsChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section id="news" class="news-section">
+        <section class="news-section">
             <h2><i class="fa-solid fa-newspaper"></i> Últimas Notícias Econômicas</h2>
             <div class="news-grid" id="newsContainer">
                 </div>
@@ -84,11 +57,7 @@
 
     <footer>
         <div class="container footer-content">
-            <p>&copy; 2026 AgroEcon Analytics. Dados fictícios para fins demonstrativos.</p>
-            <div class="social-links">
-                <a href="#"><i class="fa-brands fa-github"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
+            <p>&copy; 2026 AgroEcon Analytics.</p>
         </div>
     </footer>
 
